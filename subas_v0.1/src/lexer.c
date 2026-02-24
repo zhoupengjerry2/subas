@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名称： lexer.c
  * 描    述： 词法分析器实现（Lexer）
@@ -32,7 +32,7 @@ static void skip_whitespace_and_comments(Lexer* lx);
 /* 创建词法分析器  */
 Lexer* lexer_create(const char* src) {
     Lexer* lx;
-    
+
     /* 判断入口参数合法性    */
     if (src == NULL) {
         return NULL;
@@ -53,7 +53,7 @@ Lexer* lexer_create(const char* src) {
         free(lx);
         return NULL;
     }
-    
+
     /* 复制源文本并确保以 '\0' 结尾 */
     unsigned    i;
     for (i = 0; i < lx->buf_len; i++) {
@@ -64,7 +64,7 @@ Lexer* lexer_create(const char* src) {
     /* 设置内部指针   */
     lx->pos = 0;
     lx->line = 1;
-    
+
     return lx;
 }
 
@@ -74,12 +74,12 @@ void lexer_destroy(Lexer* lx) {
     if (lx == NULL) {
         return;
     }
-    
+
     /* 释放内部缓冲区  */
     if (lx->buffer != NULL) {
         free(lx->buffer);
     }
-    
+
     /* 释放词法分析器  */
     free(lx);
 }
@@ -90,7 +90,7 @@ static Token lex_identifier(Lexer* lx) {
     unsigned len = 0;
     int ch = 0;
     Token tok = {TT_DUMMY, "", 0, 0};
-    
+
     /* 判断首个字符是否为字母、数字   */
     ch = peek_char(lx);
     while (is_alnum(ch)) {
@@ -268,7 +268,7 @@ static Token lex_string(Lexer* lx) {
     }
 
     u32 len = lx->pos - start; /* 计算不含结束引号的长度 */
-    
+
     if (peek_char(lx) != quote) {
         /* 未闭合字符串 */
         error_report(lx->line, ERR_LEX_UNCLOSED_STR, NULL_PTR);
@@ -401,7 +401,7 @@ static char peek_char(Lexer* lx) {
 /* 返回当前字符并前进位置 */
 static char advance_char(Lexer* lx) {
     char ch = peek_char(lx);
-    
+
     if (ch == '\0') {
         return '\0';
     }
@@ -412,7 +412,7 @@ static char advance_char(Lexer* lx) {
 /* 跳过空白与注释；注释以 ';' 开始至行尾 */
 static void skip_whitespace_and_comments(Lexer* lx) {
     char ch;
-    
+
     for (;;) {
         ch = peek_char(lx);
         if (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n') {
@@ -421,7 +421,7 @@ static void skip_whitespace_and_comments(Lexer* lx) {
         }
         if (ch == ';') {
             /* 注释：跳到行尾或文件结束 */
-            while (peek_char(lx) != '\0' && 
+            while (peek_char(lx) != '\0' &&
                 peek_char(lx) != '\n' &&
                 peek_char(lx) != '\r') {
                 advance_char(lx);
@@ -431,3 +431,5 @@ static void skip_whitespace_and_comments(Lexer* lx) {
         break;
     }
 }
+
+

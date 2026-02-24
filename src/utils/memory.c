@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: memory.c
  * 描述  : 内存管理实现文件。
@@ -15,7 +15,7 @@ void* util_malloc(u32 size) {
     if (size == 0) {
         return NULL_PTR;
     }
-    
+
     ptr = malloc((size_t)size);
     if (ptr == NULL_PTR) {
         /* 在完整的编译器架构中，这里应报告致命错误并可选择退出。
@@ -31,3 +31,5 @@ void util_free(void* ptr) {
         free(ptr);
     }
 }
+
+

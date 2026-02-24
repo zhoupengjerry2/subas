@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: test_lexer.c
  * 描述  : 词法分析器单元测试驱动程序
@@ -71,7 +71,7 @@ static void test_basic_tokens(void) {
         if (tok.type == TOK_EOF) break;
         if (tok.type == TOK_NEWLINE) continue; /* 跳过换行 */
 
-        printf("Token %d: type=%s, lexeme='%s', line=%u", 
+        printf("Token %d: type=%s, lexeme='%s', line=%u",
                count++, token_type_name(tok.type), tok.lexeme, tok.line);
         if (tok.type == TOK_NUMBER) printf(", int_value=%d", tok.int_value);
         printf("\n");
@@ -166,7 +166,7 @@ static void test_comments(void) {
         tok = lexer_next_token(lx);
         if (tok.type == TOK_EOF) break;
 
-        printf("Token: type=%s, lexeme='%s', line=%u", 
+        printf("Token: type=%s, lexeme='%s', line=%u",
                token_type_name(tok.type), tok.lexeme, tok.line);
         if (tok.type == TOK_NUMBER) printf(", int_value=%d", tok.int_value);
         printf("\n");
@@ -257,7 +257,7 @@ static void test_error_handling(void) {
         if (tok.type == TOK_EOF) break;
         if (tok.type == TOK_NEWLINE) continue;
 
-        printf("Token: type=%s, lexeme='%s', line=%u\n", 
+        printf("Token: type=%s, lexeme='%s', line=%u\n",
                token_type_name(tok.type), tok.lexeme, tok.line);
         token_dispose(&tok);
     }
@@ -354,3 +354,5 @@ int main(void) {
 
     return 0;
 }
+
+

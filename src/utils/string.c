@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: string.c
  * 描述  : 字符串处理实现文件。
@@ -36,11 +36,11 @@ s32 util_strcmp(const char* s1, const char* s2) {
 char* util_strdup(const char* str) {
     u32 len;
     char* copy;
-    
+
     if (str == NULL_PTR) {
         return NULL_PTR;
     }
-    
+
     len = util_strlen(str) + 1;
     copy = (char*)util_malloc(len);
     if (copy != NULL_PTR) {
@@ -53,11 +53,13 @@ void* util_memset(void* ptr, int value, u32 size) {
     u8* p = (u8*)ptr;
     u8 byte_value = (u8)(value & 0xFF);
     u32 i;
-    
+
     for (i = 0; i < size; i++) {
         p[i] = byte_value;
     }
-    
+
     return ptr;
 }
+
+
 

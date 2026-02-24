@@ -1,4 +1,4 @@
-/**
+﻿/**
  * symtab.h - 符号表模块头文件
  *
  * 本模块实现汇编器的符号表，用于维护标签、变量、过程等符号的定义和地址。
@@ -123,3 +123,5 @@ u32 symtab_get_symbol_count(SymbolTable* symtab);
 void symtab_clear(SymbolTable* symtab);
 
 #endif /* __SYMTAB_H__ */
+
+

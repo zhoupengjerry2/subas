@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief utils.h - 核心基础设施与工具库头文件。
  * 为上层模块（如词法分析、符号表、表驱动解析）提供基础数据类型、
  * 安全的内存管理、底层字符串操作以及通用的哈希表数据结构。
@@ -6,7 +6,7 @@
  * @author Jerry Zhou
  * @date 2026/02/23
  * @version 0.1
- * 
+ *
  */
 #ifndef __UTILS_H__
 #define __UTILS_H__
@@ -139,3 +139,5 @@ void util_ht_destroy(UtilHashTable* table);
 
 
 #endif /* __UTILS_H__ */
+
+

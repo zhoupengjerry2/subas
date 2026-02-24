@@ -1,4 +1,4 @@
-/**
+﻿/**
  * lexer.h - 词法分析模块头文件
  *
  * 本模块提供一个用于汇编器前端的简易词法分析器（Lexer）。
@@ -74,3 +74,5 @@ Token lexer_next_token(Lexer* lx);
 void token_dispose(Token* tok);
 
 #endif /* __LEXER_H__ */
+
+

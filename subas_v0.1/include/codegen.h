@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: codegen.h
  * 描述  : 代码生成模块 - 第二遍扫描
@@ -164,3 +164,5 @@ Relocation* codegen_get_relocation_info(const CodeGen* codegen, u32* out_count);
 void codegen_destroy(CodeGen* codegen);
 
 #endif /* __CODEGEN_H__ */
+
+

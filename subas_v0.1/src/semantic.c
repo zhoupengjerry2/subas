@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: semantic.c
  * 描述  : 语义分析模块实现 - 第一遍扫描
@@ -61,14 +61,14 @@ PassOne* semantic_pass_one(const Token* tokens, u32 token_count) {
         error_report(0, ERR_SYS_OUT_OF_MEM, "无法分配 PassOne 结构");
         return NULL;
     }
-    
+
     pass_one->symtab = symtab_create(256);
     if (pass_one->symtab == NULL) {
         util_free(pass_one);
         error_report(0, ERR_SYS_OUT_OF_MEM, "无法创建符号表");
         return NULL;
     }
-    
+
     pass_one->max_instructions = 512;
     pass_one->instructions = (InstructionEntry*)util_malloc(
         sizeof(InstructionEntry) * pass_one->max_instructions
@@ -79,12 +79,12 @@ PassOne* semantic_pass_one(const Token* tokens, u32 token_count) {
         error_report(0, ERR_SYS_OUT_OF_MEM, "无法分配指令列表");
         return NULL;
     }
-    
+
     pass_one->instruction_count = 0;
     pass_one->current_address = 0;
     pass_one->current_line = 1;
     pass_one->has_errors = 0;
-    
+
     /* 遍历 Token 流，提取指令 */
     u32 i = 0;
     while (i < token_count) {
@@ -93,30 +93,30 @@ PassOne* semantic_pass_one(const Token* tokens, u32 token_count) {
             pass_one->current_line++;
             continue;
         }
-        
+
         /* 尝试解析一条指令 */
         if (pass_one->instruction_count >= pass_one->max_instructions) {
             pass_one->has_errors = 1;
             error_report(tokens[i].line, ERR_PARSE_EXPECTED_OP, "指令数超过限制");
             break;
         }
-        
+
         InstructionEntry* entry = &pass_one->instructions[pass_one->instruction_count];
         int tokens_consumed = semantic_analyze_instruction(pass_one, tokens, i, entry);
-        
+
         if (tokens_consumed < 0) {
             pass_one->has_errors = 1;
             i++;
             continue;
         }
-        
+
         entry->address = pass_one->current_address;
         entry->line = pass_one->current_line;
-        
+
         /* 预估指令长度 */
         entry->length = estimate_instruction_length(entry->mnemonic, entry->operand_count);
         pass_one->current_address += entry->length;
-        
+
         /* 如果指令有标签，登记到符号表 */
         if (entry->has_label) {
             int result = symtab_insert(
@@ -128,20 +128,20 @@ PassOne* semantic_pass_one(const Token* tokens, u32 token_count) {
             );
             if (result != 0) {
                 pass_one->has_errors = 1;
-                error_report(entry->line, ERR_PARSE_DUP_LABEL, 
+                error_report(entry->line, ERR_PARSE_DUP_LABEL,
                     "标签重复定义");
             }
         }
-        
+
         pass_one->instruction_count++;
         i += tokens_consumed;
     }
-    
+
     if (pass_one->has_errors) {
         semantic_pass_one_destroy(pass_one);
         return NULL;
     }
-    
+
     return pass_one;
 }
 
@@ -156,19 +156,19 @@ int semantic_analyze_instruction(
 ) {
     u32 i = token_index;
     u32 tokens_consumed = 0;
-    
+
     out_entry->operand_count = 0;
     out_entry->has_label = 0;
     util_memset(out_entry->mnemonic, 0, sizeof(out_entry->mnemonic));
     util_memset(out_entry->label, 0, sizeof(out_entry->label));
-    
+
     /* 检查是否有标签前缀 (标签: 指令) */
     if (tokens[i].type == TOK_IDENTIFIER && i + 1 < 65535 && tokens[i+1].type == TOK_COLON) {
         out_entry->has_label = 1;
         util_strcpy(out_entry->label, (const char*)tokens[i].lexeme);
         i += 2;
         tokens_consumed = 2;
-        
+
         /* 标签后面可能直接是 NEWLINE，这种情况下只有标签，没有指令 */
         if (i >= 65535 || tokens[i].type == TOK_NEWLINE || tokens[i].type == TOK_EOF) {
             /* 创建一个虚拟"NOP"指令来保持标签地址 */
@@ -177,25 +177,25 @@ int semantic_analyze_instruction(
             return tokens_consumed;
         }
     }
-    
+
     /* 读取助记符 */
     if (i >= 65535 || tokens[i].type != TOK_IDENTIFIER) {
         return -1;
     }
-    
+
     util_strcpy(out_entry->mnemonic, (const char*)tokens[i].lexeme);
     i++;
     tokens_consumed++;
-    
+
     /* 解析操作数 */
     while (i < 65535 && tokens[i].type != TOK_NEWLINE && tokens[i].type != TOK_EOF
            && out_entry->operand_count < SEMANTIC_MAX_OPERANDS) {
-        
+
         Operand* operand = &out_entry->operands[out_entry->operand_count];
         operand->type = OPERAND_NONE;
         operand->value = 0;
         util_memset(operand->name, 0, sizeof(operand->name));
-        
+
         /* 按 Token 类型确定操作数类型 */
         if (tokens[i].type == TOK_IDENTIFIER) {
             if (is_register((const char*)tokens[i].lexeme)) {
@@ -233,11 +233,11 @@ int semantic_analyze_instruction(
             /* 非操作数 Token，结束操作数解析 */
             break;
         }
-        
+
         out_entry->operand_count++;
         i++;
         tokens_consumed++;
-        
+
         /* 检查是否有逗号分隔的下一个操作数 */
         if (i < 65535 && tokens[i].type == TOK_COMMA) {
             i++;
@@ -246,7 +246,7 @@ int semantic_analyze_instruction(
             break;
         }
     }
-    
+
     return tokens_consumed;
 }
 
@@ -260,13 +260,13 @@ u32 semantic_get_instruction_length(
 ) {
     (void)operand_types;  /* 当前简化实现 */
     (void)operand_count;
-    
+
     /* 根据 MASM 指令编码规则预估长度 */
     if (util_strcmp((const char*)mnemonic, "DB") == 0) return 1;
     if (util_strcmp((const char*)mnemonic, "ORG") == 0) return 0;
     if (util_strcmp((const char*)mnemonic, "SEGMENT") == 0) return 0;
     if (util_strcmp((const char*)mnemonic, "ENDS") == 0) return 0;
-    
+
     return 3;  /* 默认 3 字节 */
 }
 
@@ -285,7 +285,7 @@ int semantic_validate_operand(
             return -1;
         }
     }
-    
+
     return 0;
 }
 
@@ -294,14 +294,16 @@ int semantic_validate_operand(
  */
 void semantic_pass_one_destroy(PassOne* pass_one) {
     if (pass_one == NULL) return;
-    
+
     if (pass_one->symtab != NULL) {
         symtab_destroy(pass_one->symtab);
     }
-    
+
     if (pass_one->instructions != NULL) {
         util_free(pass_one->instructions);
     }
-    
+
     util_free(pass_one);
 }
+
+

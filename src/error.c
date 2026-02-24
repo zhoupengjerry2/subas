@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: error.c
  * 描述  : 统一错误处理与报告模块的实现。
@@ -14,7 +14,7 @@
  * -------------------------------------------------------------------------- */
 static u32 g_error_count = 0;
 
-/* * 错误码与提示信息的映射结构体 
+/* * 错误码与提示信息的映射结构体
  */
 typedef struct {
     ErrorCode code;
@@ -28,16 +28,16 @@ static const ErrorMapping g_error_table[] = {
     { ERR_LEX_INVALID_CHAR,    "Lexical Error: Invalid character encountered" },
     { ERR_LEX_UNCLOSED_STR,    "Lexical Error: Unclosed string literal" },
     { ERR_LEX_INVALID_NUM,     "Lexical Error: Invalid numeric constant" },
-    
+
     { ERR_PARSE_EXPECTED_OP,   "Syntax Error: Expected operand missing" },
     { ERR_PARSE_INVALID_REG,   "Syntax Error: Invalid register name" },
     { ERR_PARSE_UNK_MNEMONIC,  "Syntax Error: Unknown instruction mnemonic" },
     { ERR_PARSE_DUP_LABEL,     "Symbol Error: Duplicate label definition" },
     { ERR_PARSE_UNDEFINED_LBL, "Symbol Error: Undefined reference to label" },
-    
+
     { ERR_SYS_OUT_OF_MEM,      "System Error: Memory allocation failed" },
     { ERR_SYS_FILE_IO,         "System Error: File I/O operation failed" },
-    
+
     { ERR_NONE,                NULL_PTR } /* 结束标记 */
 };
 
@@ -70,17 +70,17 @@ void error_init(void) {
 
 void error_report(u32 line_num, ErrorCode code, const char* detail) {
     const char* base_msg;
-    
+
     base_msg = find_error_msg(code);
     g_error_count++;
 
     /* 统一错误格式输出: [Line XXX] Error E1001: Message (Detail) */
     fprintf(stderr, "[Line %u] Error E%d: %s", (unsigned int)line_num, (int)code, base_msg);
-    
+
     if (detail != NULL_PTR) {
         fprintf(stderr, " -> %s", detail);
     }
-    
+
     fprintf(stderr, "\n");
 }
 
@@ -91,3 +91,5 @@ u32 error_get_count(void) {
 bool_t error_has_failed(void) {
     return (g_error_count > 0) ? TRUE : FALSE;
 }
+
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @brief error.h - 错误处理模块头文件。
  * 定义了错误代码枚举和错误报告接口，用于在汇编过程中统一处理各种错误情况，
  * 如语法错误、未知指令、未定义标签等。
@@ -7,7 +7,7 @@
  * @author Jerry Zhou
  * @date 2026/02/23
  * @version 0.1
- * 
+ *
  */
 #ifndef __ERROR_H__
 #define __ERROR_H__
@@ -20,19 +20,19 @@
  * -------------------------------------------------------------------------- */
 typedef enum {
     ERR_NONE                = 0,
-    
+
     /* 词法错误 (Lexical Errors) */
     ERR_LEX_INVALID_CHAR    = 1001,  /* 非法字符 */
     ERR_LEX_UNCLOSED_STR    = 1002,  /* 字符串未闭合 */
     ERR_LEX_INVALID_NUM     = 1003,  /* 非法数字格式 */
-    
+
     /* 语法/解析错误 (Syntax/Parsing Errors) */
     ERR_PARSE_EXPECTED_OP   = 2001,  /* 缺少操作数 */
     ERR_PARSE_INVALID_REG   = 2002,  /* 非法寄存器名 */
     ERR_PARSE_UNK_MNEMONIC  = 2003,  /* 未知指令助记符 */
     ERR_PARSE_DUP_LABEL     = 2004,  /* 标签重复定义 */
     ERR_PARSE_UNDEFINED_LBL = 2005,  /* 符号未定义 (通常在 Pass 2 报错) */
-    
+
     /* 系统/资源错误 (System Errors) */
     ERR_SYS_OUT_OF_MEM      = 3001,  /* 内存溢出 */
     ERR_SYS_FILE_IO         = 3002   /* 文件读取/写入失败 */
@@ -73,3 +73,5 @@ bool_t error_has_failed(void);
 
 
 #endif /* __ERROR_H__ */
+
+

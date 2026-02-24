@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: lexer.c
  * 描述  : 词法分析器实现（Lexer）
@@ -295,7 +295,7 @@ static Token lex_string(Lexer* lx) {
     }
 
     u32 len = lx->pos - start; /* 计算不含结束引号的长度 */
-    
+
     if (peek_char(lx) != quote) {
         /* 未闭合字符串 */
         error_report(lx->line, ERR_LEX_UNCLOSED_STR, NULL_PTR);
@@ -398,3 +398,5 @@ Token lexer_next_token(Lexer* lx) {
         }
     }
 }
+
+

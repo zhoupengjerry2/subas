@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: semantic.h
  * 描述  : 语义分析模块 - 第一遍扫描
@@ -92,7 +92,7 @@ typedef struct {
 
 /*
  * semantic_pass_one
- * 
+ *
  * 功能：执行第一遍扫描（语法与语义收集）
  *
  * 参数：
@@ -195,3 +195,5 @@ int semantic_validate_operand(
 void semantic_pass_one_destroy(PassOne* pass_one);
 
 #endif /* __SEMANTIC_H__ */
+
+

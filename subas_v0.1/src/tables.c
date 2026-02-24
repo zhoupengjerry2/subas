@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * 文件名: tables.c
  * 描述  : 指令表和伪指令表驱动实现
@@ -74,7 +74,7 @@ static const InstructionInfo g_instruction_table[] = {
         .is_pseudo = 0,
         .description = "Compare two operands and set flags"
     },
-    
+
     /* 位操作指令 */
     {
         .mnemonic = "AND",
@@ -116,7 +116,7 @@ static const InstructionInfo g_instruction_table[] = {
         .is_pseudo = 0,
         .description = "Shift right"
     },
-    
+
     /* 跳转指令 */
     {
         .mnemonic = "JMP",
@@ -166,7 +166,7 @@ static const InstructionInfo g_instruction_table[] = {
         .is_pseudo = 0,
         .description = "Loop while CX != 0"
     },
-    
+
     /* 栈操作 */
     {
         .mnemonic = "PUSH",
@@ -208,7 +208,7 @@ static const InstructionInfo g_instruction_table[] = {
         .is_pseudo = 0,
         .description = "No operation"
     },
-    
+
     /* 标志位操作 */
     {
         .mnemonic = "CLC",
@@ -226,7 +226,7 @@ static const InstructionInfo g_instruction_table[] = {
         .is_pseudo = 0,
         .description = "Set carry flag"
     },
-    
+
     /* 中断 */
     {
         .mnemonic = "INT",
@@ -236,7 +236,7 @@ static const InstructionInfo g_instruction_table[] = {
         .is_pseudo = 0,
         .description = "Call interrupt handler"
     },
-    
+
     /* 伪指令 */
     {
         .mnemonic = "SEGMENT",
@@ -378,3 +378,5 @@ const InstructionInfo* tables_get_instruction_by_index(u32 index) {
     }
     return &g_instruction_table[index];
 }
+
+

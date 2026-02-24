@@ -1,9 +1,9 @@
-# SUBAS 项目状态 - 最终报告
+﻿# SUBAS 项目状态 - 最终报告
 
-**项目名称**: SUBAS (16-bit MASM 3.0 Subset Assembler)  
-**版本**: 0.1.0  
-**状态**: ✅ **生产就绪**  
-**完成日期**: 2024  
+**项目名称**: SUBAS (16-bit MASM 3.0 Subset Assembler)
+**版本**: 0.1.0
+**状态**: ✅ **生产就绪**
+**完成日期**: 2024
 
 ---
 
@@ -25,11 +25,11 @@
 
 ### 指令支持 (33条)
 
-**一般操作**: MOV, ADD, SUB, MUL, DIV, CMP (6)  
-**位操作**: AND, OR, XOR, SHL, SHR (5)  
-**跳转**: JMP, JZ, JNZ, JC, JNC, LOOP (6)  
-**栈操作**: PUSH, POP, CALL, RET (4)  
-**标志**: CLC, STC, INT, NOP (4)  
+**一般操作**: MOV, ADD, SUB, MUL, DIV, CMP (6)
+**位操作**: AND, OR, XOR, SHL, SHR (5)
+**跳转**: JMP, JZ, JNZ, JC, JNC, LOOP (6)
+**栈操作**: PUSH, POP, CALL, RET (4)
+**标志**: CLC, STC, INT, NOP (4)
 **伪指令**: SEGMENT, ENDS, ASSUME, ORG, DB, PROC, ENDP, END (8)
 
 ### 特性支持
@@ -55,7 +55,7 @@
 
 ```
 ✅ Utils/Error Module Tests:        55/55 PASS
-✅ Lexer Module Tests:              9+/9+ PASS  
+✅ Lexer Module Tests:              9+/9+ PASS
 ✅ Tables/SymTab Module Tests:     61/61 PASS
 ✅ Semantic/CodeGen Module Tests:  16/16 PASS
 ────────────────────────────────────────
@@ -348,13 +348,15 @@ Output file 'test.com' generated successfully!
 
 ---
 
-**项目完成**: 2024年  
-**编程语言**: C90  
-**编译器**: GCC  
-**操作系统**: Windows/Linux/macOS (可移植)  
+**项目完成**: 2024年
+**编程语言**: C90
+**编译器**: GCC
+**操作系统**: Windows/Linux/macOS (可移植)
 
 ---
 
 *All systems operational. Ready for deployment.*
 
 鉁✓ **MISSION ACCOMPLISHED**
+
+

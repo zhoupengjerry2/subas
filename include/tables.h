@@ -1,4 +1,4 @@
-/**
+﻿/**
  * tables.h - 指令表和伪指令表驱动模块头文件
  *
  * 本模块封装汇编器支持的所有指令和伪指令的定义，采用表驱动设计方便扩展。
@@ -31,14 +31,14 @@ typedef enum {
     INSTR_MUL = 0x04,
     INSTR_DIV = 0x05,
     INSTR_CMP = 0x06,
-    
+
     /* 位操作指令 */
     INSTR_AND = 0x07,
     INSTR_OR  = 0x08,
     INSTR_XOR = 0x09,
     INSTR_SHL = 0x0A,
     INSTR_SHR = 0x0B,
-    
+
     /* 跳转指令 */
     INSTR_JMP = 0x10,
     INSTR_JZ  = 0x11,
@@ -46,23 +46,23 @@ typedef enum {
     INSTR_JC  = 0x13,
     INSTR_JNC = 0x14,
     INSTR_LOOP = 0x15,
-    
+
     /* 栈操作 */
     INSTR_PUSH = 0x20,
     INSTR_POP  = 0x21,
     INSTR_CALL = 0x22,
     INSTR_RET  = 0x23,
-    
+
     /* 标志位操作 */
     INSTR_CLC = 0x30,
     INSTR_STC = 0x31,
-    
+
     /* 中断 */
     INSTR_INT = 0x40,
-    
+
     /* No-op 指令 */
     INSTR_NOP = 0x41,
-    
+
     /* 伪指令 */
     PSEUDO_SEGMENT = 0x80,
     PSEUDO_ENDS    = 0x81,
@@ -72,7 +72,7 @@ typedef enum {
     PSEUDO_PROC    = 0x85,
     PSEUDO_ENDP    = 0x86,
     PSEUDO_END     = 0x87,
-    
+
     /* 特殊 */
     INSTR_NONE = 0xFF
 } InstructionType;
@@ -134,3 +134,5 @@ u32 tables_get_instruction_count(void);
 const InstructionInfo* tables_get_instruction_by_index(u32 index);
 
 #endif /* __TABLES_H__ */
+
+
