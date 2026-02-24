@@ -1,0 +1,23 @@
+# Build artifacts
+subas
+*.exe
+*.obj
+*.o
+*.bin
+*.com
+
+# Editor / OS
+.vscode/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
+
+# Test binaries
+tests/*.exe
+tests/*.com
+
+# Temp
+*.tmp
+build/
+dist/
